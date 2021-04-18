@@ -1,1 +1,4 @@
-<p>commits works!</p>
+<h2>Commits</h2>
+<ul class="commits">
+  <app-single-commit *ngFor="let commita of commits" [commit]="commita" (click)="showCommit(commita)"></app-single-commit>
+</ul>
