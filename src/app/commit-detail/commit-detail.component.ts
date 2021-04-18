@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { CommitService } from '../commit.service';
+import { Commit } from '../commit';
 
 @Component({
   selector: 'app-commit-detail',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommitDetailComponent implements OnInit {
 
-  constructor() { }
+  commit: Commit;
+
+  constructor(private route: ActivatedRoute,
+    private location: Location,
+    private commitService: CommitService) { }
 
   ngOnInit(): void {
+    this.getCommit();
+  }
+
+  getCommit(): void {
+    const sha = String(this.route.snapshot.paramMap.get('id'));
+    this.commitService.getCommit(sha)
+      .subscribe(commit => this.commit = commit)
   }
 
 }

@@ -1,1 +1,5 @@
-<p>commit-detail works!</p>
+<div *ngIf="commit">
+  <span class="badge">{{commit.sha}}</span>
+  <p>{{commit.message}}</p>
+  <p>{{commit.authorName}}</p>
+</div>

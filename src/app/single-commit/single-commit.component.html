@@ -1,5 +1,5 @@
 <div>
   <span class="badge">{{commit.sha}}</span>
-  <p>{{commit.message}}</p>
+  <p><a routerLink="/commit/{{commit.sha}}">{{commit.message}}</a></p>
   <p>{{commit.authorName}}</p>
 </div>
