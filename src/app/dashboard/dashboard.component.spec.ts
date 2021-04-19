@@ -1,25 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { DashboardComponent } from './dashboard.component';
 
-import { CommitsComponent } from './commits.component';
-
-describe('CommitsComponent', () => {
-  let component: CommitsComponent;
-  let fixture: ComponentFixture<CommitsComponent>;
+describe('DashboardComponent', () => {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommitsComponent ],
-      imports: [ HttpClientTestingModule, NgbModule ]
+      imports: [HttpClientTestingModule,
+        NgbModule
+      ],
+      declarations: [ DashboardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommitsComponent);
+    fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

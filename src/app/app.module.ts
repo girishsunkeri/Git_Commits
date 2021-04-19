@@ -10,13 +10,15 @@ import { SingleCommitComponent } from './single-commit/single-commit.component';
 import { CommitDetailComponent } from './commit-detail/commit-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommitsComponent,
     SingleCommitComponent,
-    CommitDetailComponent
+    CommitDetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
