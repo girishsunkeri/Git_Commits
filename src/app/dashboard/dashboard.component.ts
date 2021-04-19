@@ -13,7 +13,6 @@ import {NgbDateStruct, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 export class DashboardComponent implements OnInit {
 
   commits: Commit[] = [];
-  selectedCommit?: Commit;
   tempStart: Date = new Date();
   tempEnd: Date = new Date();
   startDate: NgbDateStruct;
@@ -25,6 +24,9 @@ export class DashboardComponent implements OnInit {
   constructor(private commitService: CommitService) { }
 
   ngOnInit(): void {
+
+    // Setting startDate and endDate to 
+    // previous months first and last day
     const currentDate = new Date();
     this.maxDate = {
       year: currentDate.getFullYear(),
@@ -32,19 +34,16 @@ export class DashboardComponent implements OnInit {
       day: currentDate.getDate()
     }
 
-    console.log(this.maxDate);
-
-
     this.tempStart.setDate(0);
     this.tempStart.setDate(1);
     this.tempEnd.setDate(0);
-    this.startDate = new NgbDate(this.tempStart.getFullYear(), this.tempStart.getMonth() + 1, this.tempStart.getDate());
-    this.endDate = new NgbDate(this.tempEnd.getFullYear(), this.tempEnd.getMonth() + 1, this.tempEnd.getDate());
+    this.startDate = new NgbDate(this.tempStart.getFullYear(), 
+                      this.tempStart.getMonth() + 1,
+                       this.tempStart.getDate());
+    this.endDate = new NgbDate(this.tempEnd.getFullYear(), 
+                      this.tempEnd.getMonth() + 1, 
+                      this.tempEnd.getDate());
     this.getCommits();
-  }
-
-  showCommit(commit: Commit): void {
-    this.selectedCommit = commit;
   }
 
   scrollToTop(): void {
@@ -62,7 +61,6 @@ export class DashboardComponent implements OnInit {
     if(selectedStartdate < selectedEnddate) {
       return true;
     }
-
     return false;
   }
 
@@ -74,7 +72,6 @@ export class DashboardComponent implements OnInit {
     } else {
       this.dateError = true;
     }
-
   }
 
   getCommits(): void {
@@ -82,13 +79,13 @@ export class DashboardComponent implements OnInit {
       .subscribe((commits: Commit[]) => this.commits = commits);
   }
 
-  getNewer(): void {
+  getNewerCommits(): void {
     this.page = this.page - 1;
     this.getCommits();
     this.scrollToTop();
   }
 
-  getOlder(): void {
+  getOlderCommits(): void {
     this.page = this.page + 1;
     this.getCommits();
     this.scrollToTop();

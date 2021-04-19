@@ -23,6 +23,10 @@ describe('SingleCommitComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should displayed passed commit', () => {
+    expect(fixture.nativeElement.querySelector('.commit-id').innerText).toEqual('c883c90cbb66e35cd1746e661d2f96f8da93fa68');
+  });
+
   @Component({
     selector: 'test-component-wrapper',
     template: '<app-single-commit [commit]="commit"></app-single-commit>'

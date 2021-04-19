@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, empty} from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { Commit } from './commit';
@@ -30,7 +30,8 @@ export class CommitService {
             url: commit.url
           }
         })
-      })
+      }),
+      catchError(this.errorHandler)
    )
   }
 
@@ -46,7 +47,12 @@ export class CommitService {
           message: commit.commit.message,
           url: commit.url
         }
-      })
+      }),
+      catchError(this.errorHandler)
    )
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    return Observable.throw(error.message || "server error.");
   }
 }

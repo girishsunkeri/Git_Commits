@@ -1,6 +1,6 @@
 <div class="single-commit">
   <span class="badge">
-    <a routerLink="/commit/{{commit.sha}}">
+    <a class="commit-id" routerLink="/commit/{{commit.sha}}">
     {{commit.sha}}</a></span>
   <p>{{ (commit.message.length>70)? (commit.message | slice:0:70)+'...':(commit.message) }}</p>
   <p>{{commit.authorName}} - {{commit.date | date:'medium'}}</p>
