@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Commit } from '../commit';
+import { Commit } from '../../commit';
 
 @Component({
   selector: 'app-single-commit',
