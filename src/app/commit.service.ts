@@ -16,7 +16,7 @@ export class CommitService {
   private commitsUrl = 'https://api.github.com/repos/mattermost/mattermost-webapp/commits';  // URL to web api
 
   getCommits(startDate: NgbDateStruct, endDate: NgbDateStruct, pageNumber: number): Observable<Commit[]> {
-    const finalUrl = `${this.commitsUrl}?since=${startDate.year}-${startDate.month}-${startDate.day}&until=${endDate.year}-${endDate.month}-${endDate.day}&page=${pageNumber}`;
+    const finalUrl = `${this.commitsUrl}?since=${startDate.year}-${startDate.month}-${startDate.day}&until=${endDate.year}-${endDate.month}-${endDate.day}&page=${pageNumber}&per_page=20`;
     return this.http.get(finalUrl).
     pipe(
       map((data: any) => {

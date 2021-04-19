@@ -11,6 +11,11 @@ button.calendar, button.calendar:active {
   justify-content:flex-start;
   margin-bottom: 20px;
   margin-left: 20px;
+  align-items: center;
+}
+
+.date-picker-container .control {
+  margin-left: 10px;
 }
 
 .page-buttons {

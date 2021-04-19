@@ -1,8 +1,8 @@
 <h2>Commits</h2>
 
 <div class="date-picker-container">
-  <label>Start Date</label>
-  <form class="form-inline">
+  <label class="control">Start Date:</label>
+  <form class="form-inline control">
     <div class="form-group">
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
@@ -15,8 +15,8 @@
   </form>
 
 
-  <label>End date</label>
-  <form class="form-inline">
+  <label class="control">End date:</label>
+  <form class="form-inline control">
     <div class="form-group">
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
@@ -28,7 +28,7 @@
     </div>
   </form>
 
-  <button class="btn btn-primary btn-search" (click)="onSearchClicked()">Search</button>
+  <button class="btn btn-primary btn-search control" (click)="onSearchClicked()">Search</button>
 </div>
 <p *ngIf="dateError" class="date-error">Please check date range</p>
 <ul class="commits">
