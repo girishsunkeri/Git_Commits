@@ -1,5 +1,7 @@
-<div>
-  <span class="badge">{{commit.sha}}</span>
-  <p><a routerLink="/commit/{{commit.sha}}">{{commit.message}}</a></p>
-  <p>{{commit.authorName}}</p>
+<div class="single-commit">
+  <span class="badge">
+    <a routerLink="/commit/{{commit.sha}}">
+    {{commit.sha}}</a></span>
+  <p>{{ (commit.message.length>70)? (commit.message | slice:0:70)+'...':(commit.message) }}</p>
+  <p>{{commit.authorName}} - {{commit.date | date:'medium'}}</p>
 </div>

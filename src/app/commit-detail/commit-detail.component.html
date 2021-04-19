@@ -1,5 +1,10 @@
 <div *ngIf="commit">
   <span class="badge">{{commit.sha}}</span>
-  <p>{{commit.message}}</p>
+  <div>
+    <markdown ngPreserveWhitespaces>
+      <p>{{commit.message}}</p>
+    </markdown>
+  </div>
+
   <p>{{commit.authorName}}</p>
 </div>

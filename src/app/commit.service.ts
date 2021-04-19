@@ -1,22 +1,52 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { Commit } from './commit';
 import { COMMITS } from './test-commits';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommitService {
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getCommits(): Observable<Commit[]> {
-    const commits = of(COMMITS);
-    return commits;
+  private commitsUrl = 'https://api.github.com/repos/mattermost/mattermost-webapp/commits';  // URL to web api
+
+  getCommits(startDate: NgbDateStruct, endDate: NgbDateStruct, pageNumber: number): Observable<Commit[]> {
+    const finalUrl = `${this.commitsUrl}?since=${startDate.year}-${startDate.month}-${startDate.day}&until=${endDate.year}-${endDate.month}-${endDate.day}&page=${pageNumber}`;
+    return this.http.get(finalUrl).
+    pipe(
+      map((data: any) => {
+        return data.map(commit => {
+          return {
+            sha: commit.sha,
+            authorName: commit.commit.author.name,
+            authorEmail: commit.commit.author.email,
+            date: new Date(commit.commit.author.date),
+            message: commit.commit.message,
+            url: commit.url
+          }
+        })
+      })
+   )
   }
 
   getCommit(sha: string): Observable<Commit> {
-    const commit = COMMITS.find(c => c.sha === sha) as Commit;
-    return of(commit);
+    return this.http.get(this.commitsUrl + '/' + sha).
+    pipe(
+      map((commit: any) => {
+        return {
+          sha: commit.sha,
+          authorName: commit.commit.author.name,
+          authorEmail: commit.commit.author.email,
+          date: new Date(commit.commit.author.date),
+          message: commit.commit.message,
+          url: commit.url
+        }
+      })
+   )
   }
 }
