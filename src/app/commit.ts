@@ -5,4 +5,5 @@ export interface Commit {
     date: Date;
     message: string;
     url: string;
+    files?: string[];
 }

@@ -1,0 +1,22 @@
+.outline {
+  display: block;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.outline h3 {
+  background: #ccc;
+  padding: 10px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.commit-message-text, .commit-meta-details {
+  padding: 10px;
+}
+
+.commit-meta {
+  margin-top: 20px;
+}

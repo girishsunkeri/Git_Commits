@@ -1,10 +1,30 @@
 <div *ngIf="commit">
-  <span class="badge">{{commit.sha}}</span>
-  <div>
-    <markdown ngPreserveWhitespaces>
-      <p>{{commit.message}}</p>
-    </markdown>
+  <div class="commit-meta outline">
+    <h3>Commit Metadata</h3>
+    <div class="commit-meta-details">
+      <div>
+        <label class="font-weight-bold">Commit SHA: </label> {{commit.sha}}
+      </div>
+      <div>
+        <label class="font-weight-bold">Commit Author: </label> {{commit.authorName}}
+      </div>
+      <div>
+        <label class="font-weight-bold">Commit DateTime: </label> {{commit.date | date:'medium'}}
+      </div>
+    </div>
   </div>
-
-  <p>{{commit.authorName}}</p>
+  <div class="commit-message outline">
+    <h3>Commit Message</h3>
+    <div class="commit-message-text">
+      <markdown ngPreserveWhitespaces>
+          <span>{{commit.message}}</span>
+      </markdown>
+    </div>
+  </div>
+  <div class="commit-files outline list-group">
+    <h3>Commit Files</h3>
+    <div class="list-group-item" *ngFor="let file of commit.files">
+      {{file}}
+    </div>
+  </div>
 </div>

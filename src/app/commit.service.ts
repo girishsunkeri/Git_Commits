@@ -45,7 +45,8 @@ export class CommitService {
           authorEmail: commit.commit.author.email,
           date: new Date(commit.commit.author.date),
           message: commit.commit.message,
-          url: commit.url
+          url: commit.url,
+          files: commit.files.map(files => files.filename)
         }
       }),
       catchError(this.errorHandler)

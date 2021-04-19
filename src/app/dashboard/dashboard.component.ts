@@ -13,6 +13,7 @@ import {NgbDateStruct, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 export class DashboardComponent implements OnInit {
 
   commits: Commit[] = [];
+  lastCommits: Commit[] = [];
   tempStart: Date = new Date();
   tempEnd: Date = new Date();
   startDate: NgbDateStruct;
@@ -34,12 +35,15 @@ export class DashboardComponent implements OnInit {
       day: currentDate.getDate()
     }
 
+    // set date to last day of previous month
     this.tempStart.setDate(0);
+    //set date to first day of a month
     this.tempStart.setDate(1);
     this.tempEnd.setDate(0);
     this.startDate = new NgbDate(this.tempStart.getFullYear(), 
                       this.tempStart.getMonth() + 1,
                        this.tempStart.getDate());
+
     this.endDate = new NgbDate(this.tempEnd.getFullYear(), 
                       this.tempEnd.getMonth() + 1, 
                       this.tempEnd.getDate());
@@ -76,7 +80,13 @@ export class DashboardComponent implements OnInit {
 
   getCommits(): void {
     this.commitService.getCommits(this.startDate, this.endDate, this.page)
-      .subscribe((commits: Commit[]) => this.commits = commits);
+      .subscribe((commits: Commit[]) => {
+        if(this.page > 1 && commits.length === 0) {
+          this.lastCommits = [...this.commits];
+        } 
+        this.commits = commits
+        
+      });
   }
 
   getNewerCommits(): void {
@@ -89,6 +99,12 @@ export class DashboardComponent implements OnInit {
     this.page = this.page + 1;
     this.getCommits();
     this.scrollToTop();
+  }
+
+  // displayed on click ob back button when no more commits to show
+  displayLastCommits(): void {
+    this.page = this.page - 1;
+    this.commits = [...this.lastCommits];
   }
 
 }

@@ -10,7 +10,6 @@ button.calendar, button.calendar:active {
   display: flex;
   justify-content:flex-start;
   margin-bottom: 20px;
-  margin-left: 20px;
   align-items: center;
 }
 
@@ -28,7 +27,6 @@ button.calendar, button.calendar:active {
 }
 
 .date-error {
-  margin-left: 20px;
   color: brown;
 }
 

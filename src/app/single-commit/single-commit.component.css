@@ -1,3 +1,12 @@
-.single-commit {
-  border: 1px solid #000;
+p {
+  margin-bottom: 0;
 }
+
+.single-commit {
+  background-color: #efeded;
+}
+
+.single-commit:hover {
+  background-color: #ccc;
+}
+

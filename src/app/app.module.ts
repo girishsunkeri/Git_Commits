@@ -18,7 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommitsComponent,
     SingleCommitComponent,
     CommitDetailComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

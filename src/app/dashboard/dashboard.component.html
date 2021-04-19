@@ -2,7 +2,7 @@
 <h2>Commits</h2>
 
 <div class="date-picker-container">
-  <label class="control">Start Date:</label>
+  <label>Start Date: </label>
   <form class="form-inline control">
     <div class="form-group">
       <div class="input-group">
@@ -15,8 +15,7 @@
     </div>
   </form>
 
-
-  <label class="control">End date:</label>
+  <label class="control">End date: </label>
   <form class="form-inline control">
     <div class="form-group">
       <div class="input-group">
@@ -40,6 +39,7 @@
   <button class="btn btn-primary btn-older" (click)="getOlderCommits()">Older</button>
 </div>
 
+<button *ngIf="page > 1 && commits.length == 0" (click)="displayLastCommits()">Back</button>
 <ng-template #noCommits>
   <div class="no-commits">
     No commits to show.
